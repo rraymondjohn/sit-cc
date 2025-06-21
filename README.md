@@ -1,4 +1,4 @@
-# Unified Healthcare Management Platform
+# Unified Healthcare Management Platform (SIT Cloud Cloud Computing Project)
 
 ## Overview
 The Unified Healthcare Management Platform combines prescription management and provider collaboration into a secure, AWS-powered solution. It serves doctors, patients, pharmacies, and healthcare providers, ensuring compliance with standards like HIPAA.
