@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vitals Cloud - Login & Registration</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/pages/auth.css" />
+  </head>
+  <body>
+    <div class="container pt-5">
+      <div class="card mt-5 auth-card overflow-hidden">
+        <div class="card-header text-center p-0">
+          <!-- Tab Navigation - Start -->
+          <ul class="nav nav-pills nav-justified" id="authTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-0 active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login-form" type="button" role="tab">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Login
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-0" id="register-tab" data-bs-toggle="pill" data-bs-target="#register-form" type="button" role="tab">
+                <i class="bi bi-person-plus me-2"></i>Register
+              </button>
+            </li>
+          </ul>
+          <!-- Tab Navigation - End -->
+        </div>
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <span class="mb-0 fs-4 text-primary"><i class="bi bi-heart-pulse-fill me-2"></i> Vitals Cloud</span>
+          </div>
+
+          <!-- Tab Content -->
+          <div class="tab-content" id="authTabContent">
+            <!-- Login Form - Start -->
+            <div class="tab-pane fade show active" id="login-form" role="tabpanel">
+              <form id="loginForm">
+                <div class="mb-3">
+                  <label for="loginEmail" class="form-label"> <i class="bi bi-envelope me-2"></i>Email Address </label>
+                  <input type="email" class="form-control" id="loginEmail" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="loginPassword" class="form-label"> <i class="bi bi-lock me-2"></i>Password </label>
+                  <div class="input-group">
+                    <input type="password" class="form-control rounded pe-5" id="loginPassword" required />
+                    <button class="password-toggle" type="button" id="toggleLoginPassword">
+                      <span class="bi bi-eye-slash"></span>
+                    </button>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-3"><i class="bi bi-box-arrow-in-right me-2"></i>Log In</button>
+
+                <!-- <div class="text-center">
+                  <a href="#" class="text-decoration-none">Forgot your password?</a>
+                </div> -->
+              </form>
+            </div>
+            <!-- Login Form - End -->
+
+            <!-- Registration Form - Start -->
+            <div class="tab-pane fade" id="register-form" role="tabpanel">
+              <form id="registerForm">
+                <div class="row mb-3">
+                  <div class="col-6">
+                    <label for="firstName" class="form-label"> <i class="bi bi-person me-2"></i>First Name *</label>
+                    <input type="text" class="form-control" id="firstName" required />
+                  </div>
+                  <div class="col-6">
+                    <label for="lastName" class="form-label"> Last Name *</label>
+                    <input type="text" class="form-control" id="lastName" required />
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="registerEmail" class="form-label"> <i class="bi bi-envelope me-2"></i>Email Address *</label>
+                  <input type="email" class="form-control" id="registerEmail" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="userRole" class="form-label"> <i class="bi bi-briefcase me-2"></i>Role *</label>
+                  <div class="dropdown">
+                    <button class="form-select text-start" type="button" id="userRole" data-bs-toggle="dropdown">
+                      <span class="text-muted">Select your role</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" data-value="admin">Administrator</a></li>
+                      <li><a class="dropdown-item" href="#" data-value="doctor">Doctor</a></li>
+                      <li><a class="dropdown-item" href="#" data-value="nurse">Nurse</a></li>
+                      <li><a class="dropdown-item" href="#" data-value="patient">Patient</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="registerPassword" class="form-label"> <i class="bi bi-lock me-2"></i>Password *</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control rounded pe-5" id="registerPassword" required />
+                    <button class="password-toggle" type="button" id="toggleRegisterPassword">
+                      <span class="bi bi-eye-slash"></span>
+                    </button>
+                  </div>
+                  <div class="form-text">Password must be at least 8 characters long</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="confirmPassword" class="form-label"> <i class="bi bi-lock-fill me-2"></i>Confirm Password *</label>
+                  <input type="password" class="form-control" id="confirmPassword" required />
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 mt-3"><i class="bi bi-person-plus me-2"></i>Create Account</button>
+              </form>
+            </div>
+            <!-- Registration Form - End -->
+          </div>
+        </div>
+
+        <!-- Footer - Start -->
+        <div class="card-footer text-center">
+          <small class="text-muted">2025 Vitals Cloud. SIT CC Project 2403781 -Ray. </small>
+        </div>
+        <!-- Footer - End -->
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/pages/auth.js"></script>
+    <script src="js/components/dropdown-handler.js"></script>
+  </body>
+</html>
