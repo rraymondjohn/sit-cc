@@ -228,7 +228,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
+  /* .sidebar {
     grid-column: 1;
     width: 0;
     overflow: hidden;
@@ -236,6 +236,18 @@ body {
     top: 0;
     left: 0;
     height: 100vh;
+    z-index: 1040;
+  } */
+
+  .sidebar {
+    grid-row: 2;
+    grid-column: 1;
+    position: relative;
+    width: 0;
+    background: white;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    overflow: hidden;
     z-index: 1040;
   }
 

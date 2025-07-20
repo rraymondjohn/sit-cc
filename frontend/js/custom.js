@@ -1,3 +1,22 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("vitals_cloud_token");
+  if (!token) {
+    // If no token, redirect to login page
+    window.location.href = "auth.html";
+  }
+
+  // Handle Logout button click
+  document.getElementById("logoutBtn").addEventListener("click", function () {
+    console.log("User logged out");
+
+    //Clear any session data if necessary
+    localStorage.removeItem("vitals_cloud_token");
+    localStorage.removeItem("vitals_appointments");
+
+    window.location.href = "auth.html";
+  });
+});
+
 // Sidebar toggle functionality
 document.getElementById("sidebarToggle").addEventListener("click", function () {
   const sidebar = document.getElementById("sidebar");
@@ -9,7 +28,7 @@ document.getElementById("sidebarToggle").addEventListener("click", function () {
 // Navigation active state
 document.querySelectorAll(".sidebar-nav-link").forEach((navLink) => {
   navLink.addEventListener("click", function (e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     // Remove active class from all navs
     document.querySelectorAll(".sidebar-nav-link").forEach((link) => link.classList.remove("active"));

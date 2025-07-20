@@ -30,6 +30,8 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   const password = document.getElementById("loginPassword").value;
   console.log("Login form submitted with:", { email, password });
 
+  localStorage.setItem("vitals_cloud_token", "dummy_token"); // Simulate token storage
+
   window.location.href = "index.html"; // Adjust the path as necessary
 });
 

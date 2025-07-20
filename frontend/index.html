@@ -27,24 +27,6 @@
         </span>
 
         <div class="ms-auto d-flex align-items-center">
-          <div class="dropdown me-3">
-            <button class="btn btn-outline-light dropdown-toggle" type="button" id="notificationDropdown" data-bs-toggle="dropdown">
-              <i class="bi bi-bell"></i>
-              <span class="badge bg-danger rounded-pill ms-1">3</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" href="#"><i class="bi bi-exclamation-triangle text-warning me-2"></i>Critical patient alert</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="bi bi-info-circle text-info me-2"></i>System maintenance scheduled</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="bi bi-check-circle text-success me-2"></i>Backup completed</a>
-              </li>
-            </ul>
-          </div>
-
           <div class="dropdown">
             <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
               <i class="bi bi-person-circle"></i>
@@ -52,14 +34,14 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a>
+                <a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a>
+                <a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>Settings</a>
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                <a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
               </li>
             </ul>
           </div>
@@ -72,46 +54,25 @@
     <nav class="sidebar" id="sidebar">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link active">
-            <i class="bi bi-grid-3x3-gap-fill"></i>
-            <span class="nav-text">Dashboard</span>
-          </a>
+          <a href="index.html" class="sidebar-nav-link active"> <i class="bi bi-grid-3x3-gap-fill"></i><span class="nav-text">Dashboard</span> </a>
         </li>
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-people-fill"></i>
-            <span class="nav-text">Patients</span>
-          </a>
+          <a href="patients.html" class="sidebar-nav-link"> <i class="bi bi-people-fill"></i><span class="nav-text">Patients</span> </a>
         </li>
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-calendar3"></i>
-            <span class="nav-text">Appointments</span>
-          </a>
+          <a href="appointments.html" class="sidebar-nav-link"> <i class="bi bi-calendar3"></i><span class="nav-text">Appointments</span> </a>
         </li>
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-heart-pulse"></i>
-            <span class="nav-text">Vitals</span>
-          </a>
+          <a href="treatments.html" class="sidebar-nav-link"> <i class="bi bi-heart-pulse"></i><span class="nav-text">Treatments</span> </a>
         </li>
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-clipboard2-plus"></i>
-            <span class="nav-text">Medical Records</span>
-          </a>
+          <a href="medical-records.html" class="sidebar-nav-link"> <i class="bi bi-clipboard2-pulse"></i><span class="nav-text">Medical Records</span> </a>
         </li>
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-capsule"></i>
-            <span class="nav-text">Prescriptions</span>
-          </a>
+          <a href="pharmacy.html" class="sidebar-nav-link"> <i class="bi bi-capsule"></i><span class="nav-text">Pharmacy</span> </a>
         </li>
         <li class="sidebar-nav-item">
-          <a href="#" class="sidebar-nav-link">
-            <i class="bi bi-gear"></i>
-            <span class="nav-text">Settings</span>
-          </a>
+          <a href="settings.html" class="sidebar-nav-link"> <i class="bi bi-gear"></i><span class="nav-text">Settings</span> </a>
         </li>
       </ul>
     </nav>
