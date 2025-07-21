@@ -23,22 +23,33 @@ function togglePasswordEye(input, iconSpan) {
 }
 
 // Login
-document.getElementById("loginForm").addEventListener("submit", function (e) {
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();
-  // Handle login logic here
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
-  console.log("Login form submitted with:", { email, password });
 
-  localStorage.setItem("vitals_cloud_token", "dummy_token"); // Simulate token storage
+  try {
+    const res = await fetch("http://localhost:3001/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-  window.location.href = "index.html"; // Adjust the path as necessary
+    const data = await res.json();
+    if (res.ok) {
+      localStorage.setItem("vitals_cloud_token", "dummy_token");
+      window.location.href = "index.html";
+    } else {
+      alert(data.message || "Login failed");
+    }
+  } catch (err) {
+    alert("Network error");
+  }
 });
 
 // Register
-document.getElementById("registerForm").addEventListener("submit", function (e) {
+document.getElementById("registerForm").addEventListener("submit", async function (e) {
   e.preventDefault();
-  // Handle registration logic here
   const firstName = document.getElementById("firstName").value;
   const lastName = document.getElementById("lastName").value;
   const email = document.getElementById("registerEmail").value;
@@ -51,6 +62,21 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     return;
   }
 
-  console.log("Registration form submitted with:", { username, email, role, password });
-  window.location.href = "index.html"; // Adjust the path as necessary
+  try {
+    const res = await fetch("http://localhost:3001/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, email, password, role }),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert("Registration successful! Please log in.");
+      window.location.href = "index.html";
+    } else {
+      alert(data.message || "Registration failed");
+    }
+  } catch (err) {
+    alert("Network error");
+  }
 });
