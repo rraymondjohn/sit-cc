@@ -79,7 +79,96 @@
 
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
-      <div class="container-fluid"></div>
+      <div class="container-fluid">
+        <div class="row mb-4">
+          <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <span
+                  class="bi bi-person-circle display-1 text-white mb-3 bg-primary rounded-circle"
+                  style="width: 120px; height: 120px; font-size: 6rem; display: inline-flex; align-items: center; justify-content: center"
+                ></span>
+                <h4 class="card-title mb-1">Dr. Smith</h4>
+                <p class="text-muted mb-3">General Practitioner</p>
+                <ul class="list-group list-group-flush mb-0">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-end">Email:</span>
+                    <span class="text-start">dr.smith@example.com</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-end">Phone:</span>
+                    <span class="text-start">+1 234 567 8901</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-end">Clinic:</span>
+                    <span class="text-start">City Health Clinic</span>
+                  </li>
+                </ul>
+                <a href="#" class="btn btn-primary mt-4"><i class="bi bi-pencil"></i> Edit Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <!-- For Patients only -->
+            <div class="col-12 card mb-4">
+              <div class="card-header"><h5 class="mb-0">Upcoming Appointments</h5></div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover align-middle" id="appointmentsTable">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Treatment</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- For doctor only -->
+            <div class="col-12 card mb-4">
+              <div class="card-header"><h5 class="mb-0">My Treatments</h5></div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover align-middle" id="treatmentsTable">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- For all -->
+            <div class="col-12 card mb-4">
+              <div class="card-header"><h5 class="mb-0">My Medical Records</h5></div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover align-middle" id="medicalRecordsTable">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Bootstrap JS -->

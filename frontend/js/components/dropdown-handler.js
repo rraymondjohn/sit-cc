@@ -18,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
           this.classList.add("active");
 
           // Update button text with selected value
-          const selectedText = this.textContent.trim();
+          const selectedText = this.innerHTML.trim();
           // buttonSpan.textContent = selectedText;
           // buttonSpan.classList.remove("text-muted");
           button.innerHTML = "";
-          button.textContent = selectedText;
+          button.innerHTML = selectedText;
 
           // Store the selected value
           const selectedValue = this.getAttribute("data-value") || selectedText;

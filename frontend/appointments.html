@@ -95,6 +95,10 @@
                     <input type="text" class="form-control" id="patientName" required />
                   </div>
                   <div class="mb-3">
+                    <label for="reason" class="form-label">Treatment</label>
+                    <textarea class="form-control" id="reason" rows="2" required></textarea>
+                  </div>
+                  <div class="mb-3">
                     <label for="doctorName" class="form-label">Doctor</label>
                     <input type="text" class="form-control" id="doctorName" required />
                   </div>
@@ -106,6 +110,7 @@
                     <label for="appointmentTime" class="form-label">Time</label>
                     <input type="time" class="form-control" id="appointmentTime" required />
                   </div>
+
                   <div class="mb-3">
                     <label for="reason" class="form-label">Reason</label>
                     <textarea class="form-control" id="reason" rows="2" required></textarea>
@@ -123,16 +128,14 @@
                   <table class="table table-bordered table-hover align-middle" id="appointmentsTable">
                     <thead class="table-light">
                       <tr>
-                        <th>Patient</th>
+                        <th>Treatment</th>
                         <th>Doctor</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Reason</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <!-- Appointment rows will be injected here -->
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
