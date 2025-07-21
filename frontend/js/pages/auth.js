@@ -22,6 +22,11 @@ function togglePasswordEye(input, iconSpan) {
   }
 }
 
+/* 
+  Auth Services 
+  - Login (POST)
+  - Register (POST)
+*/
 // Login
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();

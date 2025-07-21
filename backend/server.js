@@ -1,12 +1,10 @@
 import express from "express";
-import { json } from "body-parser";
 import cors from "cors";
-import authRoutes from "./routes/auth";
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 app.use(cors());
-app.use(json());
-
+app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 3001;
