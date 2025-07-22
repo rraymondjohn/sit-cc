@@ -42,7 +42,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const data = await res.json();
     if (res.ok) {
-      localStorage.setItem("vitals_cloud_token", "dummy_token");
+      sessionStorage.setItem("vitals_cloud_token", "dummy_token");
+      sessionStorage.setItem("vitals_user", JSON.stringify(data.user));
       window.location.href = "index.html";
     } else {
       alert(data.message || "Login failed");

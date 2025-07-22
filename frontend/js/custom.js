@@ -1,8 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("vitals_cloud_token");
+  const token = sessionStorage.getItem("vitals_cloud_token");
+  const user = JSON.parse(sessionStorage.getItem("vitals_user"));
   if (!token) {
     // If no token, redirect to login page
     window.location.href = "auth.html";
+  }
+
+  const userNameElement = document.getElementById("userName");
+  if (user) {
+    if (user.role === "doctor" || user.role === "admin") {
+      userNameElement.textContent = `Dr. ${user.firstName} ${user.lastName}`;
+    } else {
+      userNameElement.textContent = `${user.firstName} ${user.lastName}`;
+    }
   }
 
   // Handle Logout button click
@@ -10,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("User logged out");
 
     //Clear any session data if necessary
-    localStorage.removeItem("vitals_cloud_token");
+    sessionStorage.removeItem("vitals_cloud_token");
+    sessionStorage.removeItem("vitals_user");
+
     localStorage.removeItem("vitals_appointments");
 
     window.location.href = "auth.html";

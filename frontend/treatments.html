@@ -29,7 +29,7 @@
           <div class="dropdown">
             <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
               <i class="bi bi-person-circle"></i>
-              <span class="ms-2">Dr. Smith</span>
+              <span class="ms-2" id="userName">Guest</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
@@ -89,117 +89,23 @@
           <div class="col-12 mb-4">
             <div class="card">
               <div class="card-header"><h5 class="mb-0">All Available Treatments</h5></div>
-              <div class="card-body row" id="treatmentsList">
-                <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-clipboard2-pulse"></i> Vaccination</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Annual flu shot and immunization schedule.</p>
-                      <p class="card-text">$199.86 SGD</p>
-                      <div class="d-grid gap-2"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-capsule"></i> Medication</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Prescription for antibiotics and pain relief.</p>
-                      <p class="card-text">$89.50 SGD</p>
-                      <div class="d-grid gap-2"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-thermometer-half"></i> Fever Management</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Treatment plan for high fever and monitoring.</p>
-                      <p class="card-text">$59.00 SGD</p>
-                      <div class="d-grid gap-2"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-hospital"></i> Surgery</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Minor outpatient procedure and recovery plan.</p>
-                      <p class="card-text">$1,200.00 SGD</p>
-                      <div class="d-grid gap-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="card-body row" id="allTreatmentsList"></div>
             </div>
           </div>
         </div>
         <!-- For Doctors only -->
-        <div class="row mb-4">
+        <div class="row mb-4 d-none" id="doctorTreatmentsSection">
           <div class="col-lg-8 mb-4">
             <div class="card">
               <div class="card-header"><h5 class="mb-0">My Treatments</h5></div>
-              <div class="card-body row" id="treatmentsList">
-                <div class="col-xxl-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-clipboard2-pulse"></i> Vaccination</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Annual flu shot and immunization schedule.</p>
-                      <p class="card-text">$199.86 SGD</p>
-                      <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">Edit</button>
-                        <button class="btn btn-outline-danger">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-capsule"></i> Medication</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Prescription for antibiotics and pain relief.</p>
-                      <p class="card-text">$89.50 SGD</p>
-                      <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">Edit</button>
-                        <button class="btn btn-outline-danger">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-thermometer-half"></i> Fever Management</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Treatment plan for high fever and monitoring.</p>
-                      <p class="card-text">$59.00 SGD</p>
-                      <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">Edit</button>
-                        <button class="btn btn-outline-danger">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-4 col-md-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header bg-primary text-white text-center"><i class="bi bi-hospital"></i> Surgery</div>
-                    <div class="card-body text-center">
-                      <p class="card-text">Minor outpatient procedure and recovery plan.</p>
-                      <p class="card-text">$1,200.00 SGD</p>
-                      <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">Edit</button>
-                        <button class="btn btn-outline-danger">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="card-body row" id="doctorTreatmentsList"></div>
             </div>
           </div>
           <div class="col-lg-4 mb-4">
             <div class="card">
               <div class="card-header"><h5 class="mb-0">New Treatment</h5></div>
               <div class="card-body">
-                <form id="appointmentForm">
+                <form id="addTreatmentForm">
                   <div class="mb-3">
                     <label for="treatmentName" class="form-label">Treatment Name *</label>
                     <input type="text" class="form-control" id="treatmentName" required />
@@ -249,10 +155,10 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="treatmentPrice" class="form-label">Treatment Price *</label>
+                    <label for="treatmentCost" class="form-label">Treatment Cost *</label>
                     <div class="input-group">
                       <span class="input-group-text">$</span>
-                      <input type="number" class="form-control" id="treatmentPrice" min="0" step="0.01" required />
+                      <input type="number" class="form-control" id="treatmentCost" min="0" step="0.01" required />
                       <span class="input-group-text">SGD</span>
                     </div>
                   </div>
@@ -272,5 +178,6 @@
     <!-- Custom JS -->
     <script src="js/custom.js"></script>
     <script src="js/components/dropdown-handler.js"></script>
+    <script type="module" src="js/pages/treatments.js"></script>
   </body>
 </html>
