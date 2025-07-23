@@ -1,10 +1,10 @@
-const API_BASE_URL = "http://localhost:3001/api";
+const API_BASE_URL = "http://localhost:3001/api/treatments";
 
 export default {
   // Get all treatments
   async getAllTreatments() {
     try {
-      const response = await fetch(`${API_BASE_URL}/treatments`);
+      const response = await fetch(API_BASE_URL);
       if (!response.ok) {
         throw new Error("Failed to fetch treatments");
       }
@@ -15,10 +15,24 @@ export default {
     }
   },
 
+  // Get treatment by ID
+  async getTreatmentById(treatmentId) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/${treatmentId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch treatment");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error getting treatment:", error);
+      throw error;
+    }
+  },
+
   // Get treatments by doctor ID
   async getTreatmentsByDoctor(doctorId) {
     try {
-      const response = await fetch(`${API_BASE_URL}/treatments/doctor/${doctorId}`);
+      const response = await fetch(`${API_BASE_URL}/doctor/${doctorId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch treatments");
       }
@@ -32,7 +46,7 @@ export default {
   // Create new treatment
   async createTreatment(treatmentData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/treatments`, {
+      const response = await fetch(API_BASE_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +66,7 @@ export default {
   // Update treatment by treatment ID
   async updateTreatment(treatmentId, treatmentData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/treatments/${treatmentId}`, {
+      const response = await fetch(`${API_BASE_URL}/${treatmentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +86,7 @@ export default {
   // Delete treatment by treatment ID
   async deleteTreatment(treatmentId) {
     try {
-      const response = await fetch(`${API_BASE_URL}/treatments/${treatmentId}`, {
+      const response = await fetch(`${API_BASE_URL}/${treatmentId}`, {
         method: "DELETE",
       });
       if (!response.ok) {

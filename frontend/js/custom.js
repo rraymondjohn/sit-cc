@@ -1,10 +1,13 @@
+const token = sessionStorage.getItem("vitals_cloud_token");
+const user = JSON.parse(sessionStorage.getItem("vitals_user"));
+
 document.addEventListener("DOMContentLoaded", function () {
-  const token = sessionStorage.getItem("vitals_cloud_token");
-  const user = JSON.parse(sessionStorage.getItem("vitals_user"));
   if (!token) {
     // If no token, redirect to login page
     window.location.href = "auth.html";
   }
+
+  setNavbar();
 
   const userNameElement = document.getElementById("userName");
   if (user) {
@@ -69,3 +72,37 @@ window.addEventListener("resize", function () {
     sidebar.classList.remove("expanded");
   }
 });
+
+// Set navbar based on user role
+function setNavbar() {
+  const dashboardLink = document.getElementById("dashboardLink");
+  const patientsLink = document.getElementById("patientsLink");
+  const appointmentsLink = document.getElementById("appointmentsLink");
+  const treatmentsLink = document.getElementById("treatmentsLink");
+  const medicalRecordsLink = document.getElementById("medicalRecordsLink");
+  const pharmacyLink = document.getElementById("pharmacyLink");
+
+  if (user.role === "admin") {
+    dashboardLink.style.display = "block";
+    patientsLink.style.display = "block";
+    appointmentsLink.style.display = "block";
+    treatmentsLink.style.display = "block";
+    medicalRecordsLink.style.display = "block";
+    pharmacyLink.style.display = "block";
+  } else if (user.role === "doctor") {
+    dashboardLink.style.display = "block";
+    patientsLink.style.display = "block";
+    appointmentsLink.style.display = "none";
+    treatmentsLink.style.display = "block";
+    medicalRecordsLink.style.display = "block";
+    pharmacyLink.style.display = "none";
+  } else {
+    // For patient or other roles
+    dashboardLink.style.display = "block";
+    patientsLink.style.display = "none";
+    appointmentsLink.style.display = "block";
+    treatmentsLink.style.display = "block";
+    medicalRecordsLink.style.display = "block";
+    pharmacyLink.style.display = "block";
+  }
+}

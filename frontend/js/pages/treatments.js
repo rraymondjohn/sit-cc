@@ -62,6 +62,8 @@ async function loadTreatments() {
       return;
     }
 
+    allTreatmentsList.innerHTML = "";
+
     allTreatmentsList.innerHTML = treatments.map((treatment) => createTreatmentCard(treatment)).join("");
   } catch (error) {
     console.error("Error loading treatments:", error);
@@ -80,6 +82,8 @@ async function loadDoctorTreatments(doctorId) {
       doctorTreatmentsList.innerHTML = '<p class="text-center">No treatments available for this doctor.</p>';
       return;
     }
+
+    doctorTreatmentsList.innerHTML = "";
 
     doctorTreatmentsList.innerHTML = treatments.map((treatment) => createDoctorTreatmentCard(treatment)).join("");
   } catch (error) {
@@ -104,7 +108,7 @@ if (addTreatmentForm) {
 
     try {
       await TreatmentsService.createTreatment(treatmentData);
-      // Optionally, reset the form
+
       addTreatmentForm.reset();
       loadTreatments();
       loadDoctorTreatments(user.id);

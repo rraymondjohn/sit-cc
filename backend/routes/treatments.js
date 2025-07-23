@@ -1,62 +1,21 @@
 import { Router } from "express";
+import { treatments } from "../data/treatmentsData.js";
 
 const router = Router();
-
-// Treatments - temporary
-const treatments = [
-  {
-    id: 1,
-    name: "Physical Therapy",
-    description: "A treatment method that uses physical methods to promote healing.",
-    cost: 150,
-    iconClassName: "bi-clipboard2-pulse",
-    doctorId: 2,
-  },
-  {
-    id: 2,
-    name: "Occupational Therapy",
-    description: "Helps patients develop, recover, or maintain daily living and work skills.",
-    cost: 120,
-    iconClassName: "bi-person-workspace",
-    doctorId: 2,
-  },
-  {
-    id: 3,
-    name: "Speech Therapy",
-    description: "Treatment to improve communication skills and speech disorders.",
-    cost: 100,
-    iconClassName: "bi-chat-dots",
-    doctorId: 4,
-  },
-  {
-    id: 4,
-    name: "Cardiac Rehabilitation",
-    description: "A medically supervised program to improve cardiovascular health.",
-    cost: 200,
-    iconClassName: "bi-heart-pulse",
-    doctorId: 4,
-  },
-  {
-    id: 5,
-    name: "Orthopedic Consultation",
-    description: "Assessment and treatment of musculoskeletal issues.",
-    cost: 180,
-    iconClassName: "bi-bone",
-    doctorId: 5,
-  },
-  {
-    id: 6,
-    name: "Dermatology Treatment",
-    description: "Diagnosis and treatment of skin conditions.",
-    cost: 130,
-    iconClassName: "bi-droplet",
-    doctorId: 5,
-  },
-];
 
 // Get all treatments
 router.get("/", (req, res) => {
   res.json(treatments);
+});
+
+// Get treatment by ID
+router.get("/:treatmentId", (req, res) => {
+  const treatmentId = parseInt(req.params.treatmentId);
+  const treatment = treatments.find((t) => t.id === treatmentId);
+  if (!treatment) {
+    return res.status(404).json({ error: "Treatment not found" });
+  }
+  res.json(treatment);
 });
 
 // Get all treatments by doctor ID
