@@ -5,7 +5,7 @@ import AppointmentsService from "../service/appointments-service.js";
 const user = JSON.parse(sessionStorage.getItem("vitals_user"));
 
 document.addEventListener("DOMContentLoaded", async () => {
-  if (user.role !== "patient" || user.role !== "admin") {
+  if (user.role !== "patient" && user.role !== "admin") {
     window.location.href = "index.html";
   }
 

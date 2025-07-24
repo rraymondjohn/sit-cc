@@ -37,15 +37,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
   try {
     const data = await AuthService.login({ email, password });
-    if (data) {
-      sessionStorage.setItem("vitals_cloud_token", "dummy_token");
-      sessionStorage.setItem("vitals_user", JSON.stringify(data.user));
-      window.location.href = "index.html";
-    } else {
-      alert(data.message || "Login failed");
-    }
+    console.log(data);
+    sessionStorage.setItem("vitals_cloud_token", "dummy_token");
+    sessionStorage.setItem("vitals_user", JSON.stringify(data.user));
+    window.location.href = "index.html";
   } catch (err) {
-    alert("Network error");
+    alert(err.message || "Network error");
   }
 });
 
@@ -66,13 +63,10 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
   try {
     const data = await AuthService.register({ firstName, lastName, email, password, role });
-    if (data) {
-      alert("Registration successful! Please log in.");
-      window.location.href = "index.html";
-    } else {
-      alert(data.message || "Registration failed");
-    }
+    console.log(data);
+    alert("Registration successful! Please log in.");
+    window.location.href = "index.html";
   } catch (err) {
-    alert("Network error");
+    alert(err.message || "Network error");
   }
 });

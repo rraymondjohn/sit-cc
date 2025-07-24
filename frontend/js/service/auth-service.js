@@ -13,7 +13,7 @@ export default {
         body: JSON.stringify(credentials),
       });
       if (!response.ok) {
-        throw new Error("Login failed");
+        throw new Error((await response.json()).message || "Login failed");
       }
       return await response.json();
     } catch (error) {
@@ -22,7 +22,7 @@ export default {
     }
   },
 
-  // Resgister new user
+  // Register new user
   async register(userData) {
     try {
       const response = await fetch(`${AUTH_API_BASE_URL}/register`, {
@@ -33,7 +33,7 @@ export default {
         body: JSON.stringify(userData),
       });
       if (!response.ok) {
-        throw new Error("Registration failed");
+        throw new Error((await response.json()).message || "Registration failed");
       }
       return await response.json();
     } catch (error) {
