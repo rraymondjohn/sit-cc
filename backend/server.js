@@ -13,6 +13,14 @@ app.use("/api/users", usersRoutes);
 app.use("/api/treatments", treatmentRoutes);
 app.use("/api/appointments", appointmentsRoutes);
 
+// S3 configuration
+app.use(
+  cors({
+    origin: "http://vitals-cloud-platform-raymondrivera-2403781.s3-website-us-east-1.amazonaws.com",
+    credentials: true,
+  })
+);
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
