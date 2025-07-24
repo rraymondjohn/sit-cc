@@ -1,3 +1,5 @@
+import AuthService from "../service/auth-service.js";
+
 document.getElementById("toggleLoginPassword").addEventListener("click", function () {
   const passwordInput = document.getElementById("loginPassword");
   const icon = this.querySelector("span");
@@ -27,9 +29,6 @@ function togglePasswordEye(input, iconSpan) {
   - Login (POST)
   - Register (POST)
 */
-require("dotenv").config();
-const API_BASE_URL = process.env.API_BASE_URL + "/auth";
-
 // Login
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -37,14 +36,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
   const password = document.getElementById("loginPassword").value;
 
   try {
-    const res = await fetch(`${API_BASE_URL}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-    if (res.ok) {
+    const data = await AuthService.login({ email, password });
+    if (data) {
       sessionStorage.setItem("vitals_cloud_token", "dummy_token");
       sessionStorage.setItem("vitals_user", JSON.stringify(data.user));
       window.location.href = "index.html";
@@ -72,14 +65,8 @@ document.getElementById("registerForm").addEventListener("submit", async functio
   }
 
   try {
-    const res = await fetch(`${API_BASE_URL}/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, password, role }),
-    });
-
-    const data = await res.json();
-    if (res.ok) {
+    const data = await AuthService.register({ firstName, lastName, email, password, role });
+    if (data) {
       alert("Registration successful! Please log in.");
       window.location.href = "index.html";
     } else {

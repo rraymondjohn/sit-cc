@@ -1,11 +1,11 @@
-require("dotenv").config();
-const API_BASE_URL = process.env.API_BASE_URL + "/appointments";
+import { API_BASE_URL } from "../config.js";
+const APPT_API_BASE_URL = API_BASE_URL + "/appointments";
 
 export default {
   // Get all appointments by patient ID
   async getAllAppointmentsByPatientId(patientId) {
     try {
-      const response = await fetch(`${API_BASE_URL}/patient/${patientId}`);
+      const response = await fetch(`${APPT_API_BASE_URL}/patient/${patientId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch appointments");
       }
@@ -19,7 +19,7 @@ export default {
   // Create new appointment
   async createAppointment(appointmentData) {
     try {
-      const response = await fetch(API_BASE_URL, {
+      const response = await fetch(APPT_API_BASE_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
