@@ -27,6 +27,9 @@ function togglePasswordEye(input, iconSpan) {
   - Login (POST)
   - Register (POST)
 */
+require("dotenv").config();
+const API_BASE_URL = process.env.API_BASE_URL + "/auth";
+
 // Login
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -34,7 +37,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
   const password = document.getElementById("loginPassword").value;
 
   try {
-    const res = await fetch("http://localhost:3001/api/auth/login", {
+    const res = await fetch(`${API_BASE_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -69,7 +72,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
   }
 
   try {
-    const res = await fetch("http://localhost:3001/api/auth/register", {
+    const res = await fetch(`${API_BASE_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, lastName, email, password, role }),

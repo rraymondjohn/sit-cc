@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://localhost:3001/api/treatments";
+require("dotenv").config();
+const API_BASE_URL = process.env.API_BASE_URL + "/treatments";
 
 export default {
   // Get all treatments

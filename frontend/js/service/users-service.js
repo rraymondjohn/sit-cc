@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://localhost:3001/api/users";
+require("dotenv").config();
+const API_BASE_URL = process.env.API_BASE_URL + "/users";
 
 export default {
   // Get all users
