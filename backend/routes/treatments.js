@@ -32,8 +32,8 @@ router.get("/:treatmentId", async (req, res) => {
 router.get("/doctor/:doctorId", async (req, res) => {
   const doctorId = parseInt(req.params.doctorId);
   try {
-    console.log(`Fetching treatments for doctor ID: ${doctorId}`);
-    const filtered = await TreatmentsService.getAllTreatmentsByDoctorId(doctorId);
+    console.log(`route: Fetching treatments for doctor ID: ${doctorId}`);
+    const filtered = await TreatmentsService.getTreatmentsByDoctorId(doctorId);
     console.log(filtered);
     res.json(filtered);
   } catch (error) {

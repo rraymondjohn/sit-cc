@@ -30,7 +30,7 @@ export async function getTreatmentById(id) {
 export async function getTreatmentsByDoctorId(doctorId) {
   const connection = await dbUtils.getConnection();
   try {
-    console.log(`Fetching treatments for doctor ID: ${doctorId}`);
+    console.log(`service: Fetching treatments for doctor ID: ${doctorId}`);
 
     const [rows] = await connection.query("SELECT * FROM treatments WHERE doctorId = ?", [doctorId]);
     if (rows.length === 0) {
