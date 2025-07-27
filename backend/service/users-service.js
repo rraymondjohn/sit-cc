@@ -47,3 +47,10 @@ export async function validateUserCredentials(email, password) {
     connection.release();
   }
 }
+
+export default {
+  registerUser,
+  checkEmailExists,
+  findUserById,
+  validateUserCredentials,
+};

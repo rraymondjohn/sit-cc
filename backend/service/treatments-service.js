@@ -77,3 +77,12 @@ export async function deleteTreatment(id) {
     connection.release();
   }
 }
+
+export default {
+  getAllTreatments,
+  getTreatmentById,
+  getTreatmentsByDoctorId,
+  createTreatment,
+  updateTreatment,
+  deleteTreatment,
+};
