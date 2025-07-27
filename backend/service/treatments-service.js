@@ -30,7 +30,15 @@ export async function getTreatmentById(id) {
 export async function getTreatmentsByDoctorId(doctorId) {
   const connection = await dbUtils.getConnection();
   try {
+    console.log(`Fetching treatments for doctor ID: ${doctorId}`);
+
     const [rows] = await connection.query("SELECT * FROM treatments WHERE doctorId = ?", [doctorId]);
+    if (rows.length === 0) {
+      console.log(`No treatments found for doctor ID: ${doctorId}`);
+      return [];
+    }
+    console.log(`Found ${rows.length} treatments for doctor ID: ${doctorId}`);
+    console.log(rows);
     return rows;
   } catch (error) {
     throw error;
