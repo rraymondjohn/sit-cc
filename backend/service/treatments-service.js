@@ -41,6 +41,8 @@ export async function getTreatmentsByDoctorId(doctorId) {
     console.log(rows);
     return rows;
   } catch (error) {
+    console.error(`Error fetching treatments for doctor ID ${doctorId}:`, error);
+    console.error("Error details:", error);
     throw error;
   } finally {
     connection.release();
