@@ -7,6 +7,9 @@ const connection = await mysql.createConnection({
   password: dbConfig.RDS_PASSWORD,
   database: dbConfig.RDS_DATABASE,
   port: dbConfig.RDS_PORT,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
 export async function getConnection() {
@@ -16,6 +19,7 @@ export async function getConnection() {
   console.log(`Port: ${dbConfig.RDS_PORT}`);
   console.log(`User: ${dbConfig.RDS_USER}`);
   console.log(`Password: ${dbConfig.RDS_PASSWORD}`);
+
   if (connection.state === "disconnected") {
     await connection.connect();
   }
