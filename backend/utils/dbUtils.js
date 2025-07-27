@@ -25,3 +25,9 @@ export async function query(sql, params) {
 export async function closeConnection() {
   await pool.end();
 }
+
+export default {
+  getConnection,
+  query,
+  closeConnection,
+};
