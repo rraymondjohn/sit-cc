@@ -1,7 +1,7 @@
 import mysql from "mysql2/promise";
 import dbConfig from "../config/dbConfig.js";
 
-let connection;
+let pool;
 
 export async function getConnection() {
   console.log("Connecting to the database...");
@@ -9,10 +9,9 @@ export async function getConnection() {
   console.log(`Host: ${dbConfig.RDS_ENDPOINT}`);
   console.log(`Port: ${dbConfig.RDS_PORT}`);
   console.log(`User: ${dbConfig.RDS_USER}`);
-  console.log(`Password: ${dbConfig.RDS_PASSWORD}`);
 
-  if (!connection) {
-    connection = await mysql.createConnection({
+  if (!pool) {
+    pool = mysql.createPool({
       host: dbConfig.RDS_ENDPOINT,
       user: dbConfig.RDS_USER,
       password: dbConfig.RDS_PASSWORD,
@@ -24,13 +23,7 @@ export async function getConnection() {
     });
   }
 
-  if (connection.state === "disconnected") {
-    await connection.connect();
-  }
-  if (connection.state === "connected") {
-    return connection;
-  }
-  throw new Error("Database connection is not established");
+  return pool.getConnection();
 }
 
 export async function query(sql, params) {
@@ -44,7 +37,9 @@ export async function query(sql, params) {
 }
 
 export async function closeConnection() {
-  await getConnection().end();
+  if (pool) {
+    await pool.end();
+  }
 }
 
 export default {
