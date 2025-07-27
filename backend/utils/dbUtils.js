@@ -1,16 +1,7 @@
 import mysql from "mysql2/promise";
 import dbConfig from "../config/dbConfig.js";
 
-const connection = await mysql.createConnection({
-  host: dbConfig.RDS_ENDPOINT,
-  user: dbConfig.RDS_USER,
-  password: dbConfig.RDS_PASSWORD,
-  database: dbConfig.RDS_DATABASE,
-  port: dbConfig.RDS_PORT,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+let connection;
 
 export async function getConnection() {
   console.log("Connecting to the database...");
@@ -19,6 +10,19 @@ export async function getConnection() {
   console.log(`Port: ${dbConfig.RDS_PORT}`);
   console.log(`User: ${dbConfig.RDS_USER}`);
   console.log(`Password: ${dbConfig.RDS_PASSWORD}`);
+
+  if (!connection) {
+    connection = await mysql.createConnection({
+      host: dbConfig.RDS_ENDPOINT,
+      user: dbConfig.RDS_USER,
+      password: dbConfig.RDS_PASSWORD,
+      database: dbConfig.RDS_DATABASE,
+      port: dbConfig.RDS_PORT,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
+    });
+  }
 
   if (connection.state === "disconnected") {
     await connection.connect();
