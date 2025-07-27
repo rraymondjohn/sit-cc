@@ -1,25 +1,26 @@
 import { Router } from "express";
 import { users } from "../data/usersData.js";
+import UserService from "../service/users-service.js";
 
 const router = Router();
 
 // Register endpoint
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
   if (!firstName || !lastName || !email || !password || !role) {
     return res.status(400).json({ message: "All fields are required." });
   }
-  if (users.find((u) => u.email === email)) {
+  if (await UserService.checkEmailExists(email)) {
     return res.status(409).json({ message: "Email already registered." });
   }
-  users.push({ firstName, lastName, email, password, role });
-  res.status(201).json({ message: "Registration successful." });
+  const newUser = await UserService.registerUser({ firstName, lastName, email, password, role });
+  res.status(201).json({ message: "Registration successful.", user: newUser });
 });
 
 // Login endpoint
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const user = users.find((u) => u.email === email && u.password === password);
+  const user = await UserService.validateUserCredentials(email, password);
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials." });
   }

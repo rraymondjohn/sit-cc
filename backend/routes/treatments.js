@@ -1,72 +1,99 @@
 import { Router } from "express";
 import { treatments } from "../data/treatmentsData.js";
+import TreatmentsService from "../service/treatments-service.js";
 
 const router = Router();
 
 // Get all treatments
-router.get("/", (req, res) => {
-  res.json(treatments);
+router.get("/", async (req, res) => {
+  try {
+    const allTreatments = await TreatmentsService.getAllTreatments();
+    res.json(allTreatments);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve treatments" });
+  }
 });
 
 // Get treatment by ID
-router.get("/:treatmentId", (req, res) => {
+router.get("/:treatmentId", async (req, res) => {
   const treatmentId = parseInt(req.params.treatmentId);
-  const treatment = treatments.find((t) => t.id === treatmentId);
-  if (!treatment) {
-    return res.status(404).json({ error: "Treatment not found" });
+  try {
+    const treatment = await TreatmentsService.getTreatmentById(treatmentId);
+    if (!treatment) {
+      return res.status(404).json({ error: "Treatment not found" });
+    }
+    res.json(treatment);
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to retrieve treatment" });
   }
-  res.json(treatment);
 });
 
 // Get all treatments by doctor ID
-router.get("/doctor/:doctorId", (req, res) => {
+router.get("/doctor/:doctorId", async (req, res) => {
   const doctorId = parseInt(req.params.doctorId);
-  const filtered = treatments.filter((t) => t.doctorId === doctorId);
-  res.json(filtered);
+  try {
+    const filtered = await TreatmentsService.getAllTreatmentsByDoctorId(doctorId);
+    res.json(filtered);
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to retrieve treatments" });
+  }
 });
 
 // Create new treatment
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { name, description, cost, iconClassName, doctorId } = req.body;
   if (!name || !description || !cost || !iconClassName || !doctorId) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // TEmporary create logic
-  const newId = treatments.length ? treatments[treatments.length - 1].id + 1 : 1;
-  const newTreatment = { id: newId, name, description, cost, iconClassName, doctorId };
-  treatments.push(newTreatment);
-  res.status(201).json(newTreatment);
+  try {
+    const newTreatment = await TreatmentsService.createTreatment({
+      name,
+      description,
+      cost,
+      iconClassName,
+      doctorId,
+    });
+    res.status(201).json(newTreatment);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create treatment" });
+  }
 });
 
 // Edit treatment
-router.put("/:treatmentId", (req, res) => {
-  const index = treatments.findIndex((t) => t.id === parseInt(req.params.treatmentId));
-  if (index === -1) {
-    return res.status(404).json({ error: "Treatment not found" });
-  }
-
-  // Temporary edit logic
+router.put("/:treatmentId", async (req, res) => {
+  const treatmentId = parseInt(req.params.treatmentId);
   const { name, description, cost, iconClassName, doctorId } = req.body;
-  treatments[index] = {
-    name: name ?? treatments[index].name,
-    description: description ?? treatments[index].description,
-    cost: cost ?? treatments[index].cost,
-    iconClassName: iconClassName ?? treatments[index].iconClassName,
-    doctorId: doctorId ?? treatments[index].doctorId,
-  };
-  res.json(treatments[index]);
+
+  try {
+    const updatedTreatment = await TreatmentsService.updateTreatment(treatmentId, {
+      name,
+      description,
+      cost,
+      iconClassName,
+      doctorId,
+    });
+    if (!updatedTreatment) {
+      return res.status(404).json({ error: "Treatment not found" });
+    }
+    res.json(updatedTreatment);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update treatment" });
+  }
 });
 
 // Delete treatment
-router.delete("/:treatmentId", (req, res) => {
-  //Temporary delete logic
-  const index = treatments.findIndex((t) => t.id === parseInt(req.params.treatmentId));
-  if (index === -1) {
-    return res.status(404).json({ error: "Treatment not found" });
+router.delete("/:treatmentId", async (req, res) => {
+  const treatmentId = parseInt(req.params.treatmentId);
+  try {
+    const deleted = await TreatmentsService.deleteTreatment(treatmentId);
+    if (!deleted) {
+      return res.status(404).json({ error: "Treatment not found" });
+    }
+    res.json(deleted);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete treatment" });
   }
-  const deleted = treatments.splice(index, 1);
-  res.json(deleted[0]);
 });
 
 export default router;
