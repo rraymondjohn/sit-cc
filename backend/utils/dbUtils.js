@@ -10,6 +10,12 @@ const connection = await mysql.createConnection({
 });
 
 export async function getConnection() {
+  console.log("Connecting to the database...");
+  console.log(`Database: ${dbConfig.RDS_DATABASE}`);
+  console.log(`Host: ${dbConfig.RDS_ENDPOINT}`);
+  console.log(`Port: ${dbConfig.RDS_PORT}`);
+  console.log(`User: ${dbConfig.RDS_USER}`);
+  console.log(`Password: ${dbConfig.RDS_PASSWORD}`);
   if (connection.state === "disconnected") {
     await connection.connect();
   }
