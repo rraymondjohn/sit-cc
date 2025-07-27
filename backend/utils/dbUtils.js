@@ -4,12 +4,6 @@ import dbConfig from "../config/dbConfig.js";
 let pool;
 
 export async function getConnection() {
-  console.log("Connecting to the database...");
-  console.log(`Database: ${dbConfig.RDS_DATABASE}`);
-  console.log(`Host: ${dbConfig.RDS_ENDPOINT}`);
-  console.log(`Port: ${dbConfig.RDS_PORT}`);
-  console.log(`User: ${dbConfig.RDS_USER}`);
-
   if (!pool) {
     pool = mysql.createPool({
       host: dbConfig.RDS_ENDPOINT,
