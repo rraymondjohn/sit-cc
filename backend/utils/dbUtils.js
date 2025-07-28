@@ -16,6 +16,7 @@ export async function getConnection() {
       connectionLimit: 10,
       queueLimit: 0,
       ssl: {
+        rejectUnauthorized: true,
         ca: fs.readFileSync("./cert/global-bundle.pem"),
       },
     });
