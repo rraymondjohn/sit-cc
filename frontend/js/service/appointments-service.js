@@ -1,11 +1,11 @@
-import { API_BASE_URL } from "../config.js";
-const APPT_API_BASE_URL = API_BASE_URL + "/appointments";
+import { APPOPOINTMENTS_ENDPOINT } from "../config.js";
+const APPT_API_BASE_URL = APPOPOINTMENTS_ENDPOINT + "/appointments";
 
 export default {
   // Get all appointments by patient ID
   async getAllAppointmentsByPatientId(patientId) {
     try {
-      const response = await fetch(`${APPT_API_BASE_URL}/patient/${patientId}`);
+      const response = await fetch(`${APPT_API_BASE_URL}?patientId=${patientId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch appointments");
       }
