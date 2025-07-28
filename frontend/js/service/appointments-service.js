@@ -1,5 +1,5 @@
 import { APPOPOINTMENTS_ENDPOINT } from "../config.js";
-const APPT_API_BASE_URL = APPOPOINTMENTS_ENDPOINT + "/appointments";
+const APPT_API_BASE_URL = APPOPOINTMENTS_ENDPOINT;
 
 export default {
   // Get all appointments by patient ID
