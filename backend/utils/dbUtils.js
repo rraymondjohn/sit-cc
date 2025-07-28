@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import dbConfig from "../config/dbConfig.js";
+import fs from "fs";
 
 let pool;
 
@@ -14,6 +15,9 @@ export async function getConnection() {
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
+      ssl: {
+        ca: fs.readFileSync("./cert/global-bundle.pem"),
+      },
     });
   }
 
