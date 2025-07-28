@@ -7,5 +7,9 @@ backend/package-lock.json
 frontend/package-lock.json
 
 aws/
-
 AWS-DEPLOYMENT.md
+
+backend/lambda/appointments-lambda/node_modules/
+backend/lambda/appointments-lambda/package-lock.json
+backend/lambda/appointments-lambda/README.md
+backend/lambda/appointments-lambda/appointments-lambda.zip

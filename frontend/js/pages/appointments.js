@@ -74,7 +74,7 @@ async function loadUserAppointments() {
 
     appointmentsTableBody.innerHTML = "";
 
-    appointments.forEach(async (appointment) => {
+    appointments.data.forEach(async (appointment) => {
       const row = document.createElement("tr");
       const treatment = await TreatmentsService.getTreatmentById(appointment.treatmentId);
       const doctor = await UsersService.getUserById(treatment.doctorId);
